@@ -14,7 +14,25 @@ ENDCLASS.
 
 
 
-CLASS zcl_a2ui_dynpro_app IMPLEMENTATION.
+CLASS ZCL_A2UI_DYNPRO_APP IMPLEMENTATION.
+
+
+  METHOD call_dynpro.
+
+* Test
+
+
+    " of course this makes no sense in abap2UI5.
+    " It's just to provoke "Sending of dynpro SAPLSPO1 0500 not possible" error.
+    CALL FUNCTION 'POPUP_TO_CONFIRM'
+      EXPORTING
+        text_question  = 'Test'
+      EXCEPTIONS
+        text_not_found = 1
+        OTHERS         = 2.
+
+  ENDMETHOD.
+
 
   METHOD z2ui5_if_app~main.
 
@@ -34,22 +52,4 @@ CLASS zcl_a2ui_dynpro_app IMPLEMENTATION.
     ENDCASE.
 
   ENDMETHOD.
-
-
-  METHOD call_dynpro.
-
-*  Test
-
-
-    " of course this makes no sense in abap2UI5.
-    " It's just to provoke "Sending of dynpro SAPLSPO1 0500 not possible" error.
-    CALL FUNCTION 'POPUP_TO_CONFIRM'
-      EXPORTING
-        text_question  = 'Test'
-      EXCEPTIONS
-        text_not_found = 1
-        OTHERS         = 2.
-
-  ENDMETHOD.
-
 ENDCLASS.
