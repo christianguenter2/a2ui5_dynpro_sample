@@ -38,6 +38,9 @@ CLASS zcl_a2ui_dynpro_app IMPLEMENTATION.
 
   METHOD call_dynpro.
 
+*  Test
+
+
     " of course this makes no sense in abap2UI5.
     " It's just to provoke "Sending of dynpro SAPLSPO1 0500 not possible" error.
     CALL FUNCTION 'POPUP_TO_CONFIRM'
