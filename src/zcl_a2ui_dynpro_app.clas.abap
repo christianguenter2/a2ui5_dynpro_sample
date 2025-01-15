@@ -19,7 +19,7 @@ CLASS ZCL_A2UI_DYNPRO_APP IMPLEMENTATION.
 
   METHOD call_dynpro.
 
-*   Test
+*  Test
 
 
     " of course this makes no sense in abap2UI5.
