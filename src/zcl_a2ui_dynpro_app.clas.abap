@@ -20,18 +20,23 @@ CLASS zcl_a2ui_dynpro_app IMPLEMENTATION.
 
     me->client = client.
 
-    IF client->check_on_init( ).
-      client->view_display( z2ui5_cl_xml_view=>factory(
-                                )->page(
-                                )->button( text = 'Call dynpro'
-                                           press = client->_event( 'press' )
-                                )->stringify( ) ).
-    ENDIF.
+    TRY.
+        IF client->check_on_init( ).
+          client->view_display( z2ui5_cl_xml_view=>factory(
+                                    )->page(
+                                    )->button( text = 'Call dynpro'
+                                               press = client->_event( 'press' )
+                                    )->stringify( ) ).
+        ENDIF.
 
-    CASE client->get( )-event.
-      WHEN 'press'.
-        call_dynpro( ).
-    ENDCASE.
+        CASE client->get( )-event.
+          WHEN 'press'.
+            call_dynpro( ).
+        ENDCASE.
+
+       CATCH cx_root INTO DATA(x).
+        client->nav_app_call( z2ui5_cl_pop_error=>factory( x ) ).
+    ENDTRY.
 
   ENDMETHOD.
 
